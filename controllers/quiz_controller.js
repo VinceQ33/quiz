@@ -36,7 +36,7 @@ exports.index=function(req,res){
 		}).catch(function(error) { next(error); });
 	} else {
 		models.Quiz.findAll({where: ["pregunta like ?", "%"+req.query.search.replace("+","%")+"%"]}).then(function(quizes){
-			res.render('quizes/index', { quizes: quizes });
+			res.render('quizes/index', { quizes: quizes , errors: []});
 		}).catch(function(error) { next(error); });
 	}
 };

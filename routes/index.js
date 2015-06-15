@@ -20,7 +20,7 @@ router.post('/quizes/create', quizController.create);
 
 // Creditos
 router.get('/author', function(req, res, next) {
-  res.render('author', {author: {name: 'Dragonborn', urlphoto: '/images/imagen.png'}});
+  res.render('author', {author: { name: 'Dragonborn', urlphoto: '/images/imagen.png'}, errors: []});
 }); 
 
 
