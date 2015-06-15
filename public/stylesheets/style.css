@@ -10,3 +10,5 @@ header, nav, section { background: #eee; text-align: center;}
 footer               { background: #eee; text-align: center;}
 nav span             { margin: 0px 10px 0px 0px;}
 
+#ErrorsMsgs		{color: #f61; font-size: smaler;}
+
