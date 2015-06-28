@@ -43,6 +43,28 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Gestión del autologout.
+app.use(function(req, res, next) {
+    var current_time = new Date();
+    var lastdate = req.session.time ? new Date(req.session.time): new Date();
+    
+    if (req.session.user && !req.path.match(/\/logout/)) {
+        if ( (current_time.getMinutes() - 2) > lastdate.getMinutes() ) {
+            req.session.errors = [{"message": 'Sesión caducada'}];
+            delete req.session.user;
+            delete req.session.time;
+            res.redirect('/login');
+        } else {
+            console.log((current_time.getMinutes() - 2) + ' > '+ lastdate.getMinutes());
+            // Refrescamos el tiempo.
+            req.session.time = new Date();
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
